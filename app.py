@@ -68,10 +68,10 @@ def get_system_info():
           ips[k] = v[0].address
       return(ips)
 
+    osinfo["Hostname"] = platform.node()
+    osinfo["System"] = platform.system()
     osinfo["Architecture"] = platform.architecture()[0]
     osinfo["Machine"] = platform.machine()
-    osinfo["Node"] = platform.node()
-    osinfo["System"] = platform.system()
     osinfo["Load Average"] = loadavg()
     osinfo["Memory"] = memory()
     osinfo["Uptime"] = uptime()

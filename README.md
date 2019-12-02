@@ -5,8 +5,9 @@
 
 ## Todo
 
-- [ ] Liveness
+- [X] Liveness
 - [ ] Fix "about" page
 - [ ] Better ip output in "pod" page
-- [ ] Readme and 
+- [ ] Readme
 - [X] Metrics
+- [ ] Favicon
