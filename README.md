@@ -1,13 +1,8 @@
 # DevQuotes
 
-## FIXME
+DevQuotes is a lightweight cloud native web app for kubernetes tests
+
+## Usage
 
 
-## Todo
-
-- [X] Liveness
-- [ ] Fix "about" page
-- [ ] Better ip output in "pod" page
-- [ ] Readme
-- [X] Metrics
-- [ ] Favicon
+## Credits

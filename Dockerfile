@@ -1,5 +1,5 @@
 FROM python:alpine
-COPY . /app
+COPY src/. /app
 WORKDIR /app
 #Psutil
 RUN apk add --update gcc libc-dev linux-headers && rm -rf /var/cache/apk/*
