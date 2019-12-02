@@ -1,5 +1,8 @@
 FROM python:alpine
 COPY . /app
 WORKDIR /app
+#Psutil
+RUN apk add --update gcc libc-dev linux-headers && rm -rf /var/cache/apk/*
 RUN pip install -r requirements.txt
-CMD ["gunicorn", "-w 4", "main:app"]
+EXPOSE 8080
+ENTRYPOINT ["python", "app.py"]

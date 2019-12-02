@@ -81,7 +81,7 @@ def get_system_info():
 
 def create_app():
     """
-    create_app is the application factory.
+    create_app
     """
 
     app = Flask(__name__, static_url_path='/static')
@@ -97,6 +97,13 @@ def create_app():
     @app.route('/about')
     def about():
         return render_template('about.html', page_title="Dev Quotes - About", os_info=get_system_info() )
+    
+    @app.route('/healthz', methods=['GET'])
+    def health():
+        """
+        Fake liveness probe
+        """
+        return 'OK'
 
     return app
 
@@ -107,9 +114,6 @@ dispatcher = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
 if __name__ == "__main__":
     run_simple(
         "localhost",
-        5000,
-        use_reloader=True,
-        use_debugger=True,
-        use_evalex=True,
+        8080,
         application=dispatcher
     )
