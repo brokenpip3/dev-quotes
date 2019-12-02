@@ -113,7 +113,7 @@ dispatcher = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
 
 if __name__ == "__main__":
     run_simple(
-        "localhost",
+        "0.0.0.0",
         8080,
         application=dispatcher
     )
