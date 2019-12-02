@@ -8,6 +8,10 @@ import requests
 import json
 import platform
 import psutil
+from prometheus_client import make_wsgi_app
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from werkzeug.serving import run_simple
+from flask_prometheus_metrics import register_metrics
 
 api_url = 'https://programming-quotes-api.herokuapp.com/quotes/random/lang/en'
 
@@ -96,5 +100,16 @@ def create_app():
 
     return app
 
+app=create_app()
+register_metrics(app, app_version="v0.1", app_config="dev")
+dispatcher = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
+
 if __name__ == "__main__":
-   create_app
+    run_simple(
+        "localhost",
+        5000,
+        use_reloader=True,
+        use_debugger=True,
+        use_evalex=True,
+        application=dispatcher
+    )
