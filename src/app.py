@@ -3,11 +3,12 @@
 DevQuotes: FIXME
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import requests
 import json
 import platform
 import psutil
+import os
 from prometheus_client import make_wsgi_app
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.serving import run_simple
@@ -104,7 +105,10 @@ def create_app():
         Fake liveness probe
         """
         return 'OK'
-
+    @app.route('/favicon.ico')
+    def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static'),
+                          'favicon.ico',mimetype='image/vnd.microsoft.icon')
     return app
 
 app=create_app()
