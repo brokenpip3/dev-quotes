@@ -8,13 +8,13 @@ DevQuotes is a lightweight cloud native web app for kubernetes tests.
 
 Ramdom programming quotes
 
-![Homepage](./home.png)
+![Homepage](home.png)
 
 `/pod`
 
 Display pod information
 
-![Pod](./pod.png)
+![Pod](pod.png)
 
 `/metrics`
 

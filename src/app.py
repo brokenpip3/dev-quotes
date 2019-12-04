@@ -33,8 +33,8 @@ def get_system_info():
       """
       Load average
       """
-      with open("/proc/loadavg", "r") as f:
-        return(f.read().strip())
+      load1, load5, load15 = os.getloadavg()
+      return load1
 
 
     def memory():
@@ -67,7 +67,7 @@ def get_system_info():
       ips = dict()
       for k, v in ifaces.items():
           ips[k] = v[0].address
-      return(ips)
+      return ips
 
     osinfo["Hostname"] = platform.node()
     osinfo["System"] = platform.system()
@@ -97,7 +97,7 @@ def create_app():
 
     @app.route('/about')
     def about():
-        return render_template('about.html', page_title="Dev Quotes - About", os_info=get_system_info() )
+        return render_template('about.html', page_title="Dev Quotes - About")
     
     @app.route('/healthz', methods=['GET'])
     def health():
