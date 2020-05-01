@@ -87,15 +87,15 @@ def create_app():
 
     app = Flask(__name__, static_url_path='/static')
 
-    @app.route('/')
+    @app.route('/', methods=['GET'])
     def home():
         return render_template('index.html', page_title="Dev Quotes", quotes=get_quotes(api_url))
 
-    @app.route('/pod')
+    @app.route('/pod', methods=['GET'])
     def podinfo():
         return render_template('podinfo.html', page_title="Dev Quotes - Container info", os_info=get_system_info() )
 
-    @app.route('/about')
+    @app.route('/about', methods=['GET'])
     def about():
         return render_template('about.html', page_title="Dev Quotes - About")
     
@@ -112,7 +112,7 @@ def create_app():
     return app
 
 app=create_app()
-register_metrics(app, app_version="v0.1", app_config="dev")
+register_metrics(app, app_version="v0.2", app_config="dev")
 dispatcher = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
 
 if __name__ == "__main__":
