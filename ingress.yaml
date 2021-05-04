@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    annotations:
+        kubernetes.io/ingress.class: nginx
+    name: devquotes
+    namespace: devquotes
+spec:
+    rules:
+        - host: ENC[AES256_GCM,data:BGvTF9jjUiSMk34ZBmJ5wNsY+w==,iv:VzdVxZBb39Wy2yJwXlO8dEyXIfmENNGfeIG3d3V6VFQ=,tag:aDCMBO58AGGTij/w0+Q7sA==,type:str]
+          http:
+            paths:
+                - backend:
+                    serviceName: devquotes
+                    servicePort: 8080
+                  path: /
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-05-04T22:09:00Z"
+    mac: ENC[AES256_GCM,data:qRuAlk7RGrSp/SlkWGCIrnBn0AHHMvZXNgKBlp1FcftMCu3L5fwipoDDJbZfXYOh1V60rqwoT4xNlDk61h7Bsngy9LyiflFjf0v3jS1cCCbbyzZ7WjKkSWe32e4Zaex1kN2wmy75V7pasUoMsOGLON/2xWr/A2jS1HaqBztUPi0=,iv:9xq6IGVoxoPOwyo6neiKGxfR+BCF4XUaWIiMO3RHR5Y=,tag:bBxShfaQariGIXP8O/GePw==,type:str]
+    pgp:
+        - created_at: "2021-05-04T22:09:00Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAwP8FxNnerN5AQ//Wo/ogmonZsV/TGI7WwJqo9VbhupIbgXs3zqN9/8Ej4V2
+            WnLfX6/HvCdXtxy5UKmAQCQH0D2bPy/7CyEJY3FWtmv7mW3nRhfHlF7vyNXanmCF
+            i4x4IuH2N//Y3rRpMo2i2kj4czLzkgDByXyNdBw1e1xyW44LFqI35xrLL7DGtKNg
+            qFz1eyaMdmf6RW5mkws4+JqVxyCjOM2KxSdtH7sXAqDDvKADczOitQJ7bxS7u4H9
+            U0BFDwExXVkJuntfr6oSRvelBFXeFQOKtujUz/hahf/vTYH/w/0lmElHtsyT/S3J
+            +9wQpMslWzbxU2tSTOcIcs0ukVHb9puikH5oFXUMjsnad9qr1AFBWRuRFyMDE9x1
+            cUFQKBHDhpA8HZseru4HpmZOdISYRpsOnGod5vtE58uVXNIiQ/Rox85HWDjLPDeQ
+            Vv8rk1k7rYDWfpOI5IgvZ7z3CmPmCgadr8nYbYRUvGEyOIU6MHys0OomAag/VTZv
+            EIOLLQoDCCtrv69h4pEhcxlovniuL7VE5Ot2eQkE7dPOhpQNYdFOSWuA+TmtxrDf
+            nGxWEOA0D5CGjbdHg4dCXQWHBP/lDlHiAnBkQfddiKrpxX8Oucrwe+JzPa2ftuxz
+            PdTipoxI2tO3ZjW/WAyLp76z+iuwZ3ZonS+L19ZK5jThYi1BMsEU6CbWC9m2BUTS
+            TgH7nwMSfCxBRfBulDh3Ih09LECLwFNhjnm6W66zCCFE4QNUdQuGKcUObdNuXQa/
+            D8W0DZt+Ue4mHGoa7XKGzI49WmuL4TWOQyBlmPyrOg==
+            =guSS
+            -----END PGP MESSAGE-----
+          fp: FEE43962AC34E28FB078EFA9F6C9CFE02626638C
+    encrypted_regex: ^(data|stringData|host|hosts)$
+    version: 3.7.1
