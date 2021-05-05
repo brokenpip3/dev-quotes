@@ -1,49 +1,54 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    annotations:
-        kubernetes.io/ingress.class: nginx
     name: devquotes
     namespace: devquotes
+    labels:
+        app: devquotes
+    annotations:
+        kubernetes.io/ingress.class: nginx
 spec:
+    tls:
+        - hosts:
+            - ENC[AES256_GCM,data:afytnMR2A7EP8qd32Y3BDl4qCRZ9SbcnEzw=,iv:MVmwcsgQPIruIioRWXSsfEwgFT8Fk73OkgzERRwDboQ=,tag:9B17n9z15bypXzI5+acRjQ==,type:str]
     rules:
-        - host: ENC[AES256_GCM,data:QifnR6QaDSpadpamuzic330yiu1XYgh6t0M=,iv:RdYTOIKiNr+xvF0U1Y9U6zvXttSlK5vTXX1mH0ndjDg=,tag:Z10/U4nvy5QGuPkQa3IxaA==,type:str]
+        - host: ENC[AES256_GCM,data:JFkz7S93My6JDvzetN5cWtPE8amxzkscpt0=,iv:nvJSIqnjD6jrgyhDGHf3geL4VwCxn7sBqcAy1lC2B1E=,tag:DICbRrmZiLSjkYY1JbbkaA==,type:str]
           http:
             paths:
-                - backend:
-                    serviceName: devquotes
-                    servicePort: 8080
-                  path: /
-          tls:
-            - hosts:
-                - ENC[AES256_GCM,data:4kZZrMO5ozcnsjo8ZTBiGzbKS784OZp+PLg=,iv:Up0yFOMiHTqgrhZmLad0OFZHBSfepMG03wNtXBtfW6A=,tag:C2kNVV13vz+NvKpp4QkXpw==,type:str]
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: devquotes
+                        port:
+                            number: 8080
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-05-05T22:28:23Z"
-    mac: ENC[AES256_GCM,data:kwiqljOUZEJD29w4Av8/q0BLNU87z3VsYPf9hWdPWhMqSlPV1UyXx3NYCjmXKEEOkRS8bWlClATsuTEvt0oxsY7u6u7wryRH0K6HO4rkKE10Spq/DbTq1MJ004I9HpIONd0pnTnfSxBKtRioMhxlOHXRtl99QHuf1Gg/i8wpWkY=,iv:uOGSNmG30ns/4+L8BSi+8NBY2R/H4PN/XNFQe6oeVSA=,tag:t9axGiiUrebC84kzsc8A+Q==,type:str]
+    lastmodified: "2021-05-05T22:38:23Z"
+    mac: ENC[AES256_GCM,data:Y9BEDqAu2Oc97OelErLUxHxZLaqoiHpUtjxQc9zGyh3Qs08bBX9zpMQvYILSgnT14xAZXQhfXIRFyc53ZS2OGKChYTCGKqmx1ULhgRy+mkkGB+Qw9/mowUSOEqs+yvNYX8+WgvS60umK3QqBorCBQ26mD/DzVxRZ42vc70YCAT8=,iv:KnrWMYHFda8pd0Rd+KroV4rgwlGuPIrxFQffHCrFQv4=,tag:nSDh2+wkzZnFl8WtAAiJew==,type:str]
     pgp:
-        - created_at: "2021-05-05T22:28:23Z"
+        - created_at: "2021-05-05T22:38:23Z"
           enc: |
             -----BEGIN PGP MESSAGE-----
 
-            hQIMAwP8FxNnerN5AQ/8CdhKkN+tUb7TNK/hjbzmrQIhrasfV5ZL1e9ejlELC4b1
-            HN4Qs0QceJKJ8/d478k5tiH0hm3D1zTJ8bWdNiwmmUtzN1fxQGkxc1IC+N+cQWcx
-            BdKPE2KXSdJE0yeV7CkobazauSuv1AdaVg23YsoyLHayT+xl4WuG4j07tQ9ZuQ+i
-            CX0adfZ9x10X/0GnWmsGpUQZMPR6m6lJuB+fbWojwKWoZ6AjplpnfPjTDdP4QjDK
-            gq6acz/VO80McGeSNBn9GZUFUOOn/e9D+Di2nF9lLlieE6tNqMJBmGLDP0m60gPx
-            yjQa34KIGR+ixugU1bynNeZw8Y4cxdJVWPXfC4dOmbX7qC6yDkYVPG7r2kkv77wB
-            ShyQvxjhqHzJekjI3a4ZFLI/0bmrfXYjvMAsNP2CWYQcmUF1pczg3IVTl8DrLXWW
-            R+lbsdF89fASqtEa8izFQcYdwlF3q4nk20kI1oriuAHUz1MofYj/0quVRBTPIxlP
-            D5Rr1M1X/EXIcKSbdY0j7RdEyNvR/Jr6EbNASl2I3HLQQvSp7WJix8ka0VLCQJxb
-            UlcH4Y2Wr4Ba+v7Ea6PRBSTBRdNVE4thmbVjjcqSfkxbQ1m+C+7UBeOgi5lY3pHs
-            YSekQJ0XRI0/N0HVDMX72ztln7C//oktAVIiCqo1X7m4flh4NAb4+0oueJTpUZ7S
-            TgF34kNcmTidoCgoXCcXUGMdJGyTN//Czg74W4AhTAZx6sBwkfcnmYWUA/TjT26q
-            8F6hDwW7tLAPWNw8FeInvNgkiRuTh3x84+8Wur5jIg==
-            =re8u
+            hQIMAwP8FxNnerN5AQ/9GmYmkuLQrkr2lT3Kn43mjfNTK/IChOVdO1E2zQT2I13m
+            uvU2p4zPbZzpheekBYn7AgUdrUboozLhvRhgtAPJ8TtDO/dG7H7ZH9XRvcADvRRb
+            mPNm8nVAdTmH/YFaQVzeIeXy5GgpT8tOrzPfG+1hqOMNF0MJkoyV5zddOEf9g17o
+            aIzG8C0E1j8+tumgFGOwYLLA1MWp0Ht0hTNHXMUUoQ9AUp/0y3LtyboiGrr/6CcI
+            S18GQNGkEZwAitnDuDahoLVholZQiwILtOWFC88wwCC2oPU7b5KWiCKzK9IhFuki
+            u1tFsl7rM9+8W6rtehGIWc3nVp+F6+lta79vaPepgJ8LSKsBjLuo3HIqDthoMXeX
+            JW+46/YrPTvhZJz839vs0NE6ZtTcrVLEVaLWwmPTrqPbEdUpCqI0oL7Qmedov9gP
+            tJ5jiFgaQsXi3nmXw6Wrd1zMoQdvNdN0rmhBeXGetfiIAs5EWs/CAjQp9AmOmvXt
+            KGEGGTLj06LtrjNEjAHnX6GkNah9tkDDGdrvmn2GM2MiuX+NVEjmddzcYabIqIn5
+            9c7NwIJG1ahdnhp7OjRR7PFQpOjyoJVv0gttVGoDgAwX0DZAcCUknDOaXWLthae3
+            WKyk05SwucYU6Ts4nZWXXsruuMn77axgq52To5+sivD2iz4GJ7ENseSxRkOZd5bS
+            TgEwlkYT+RS8l/tVmg475L9hPWOQ9qD91z50pHnyY1aruVptKL5qVixiswEwmNPG
+            kFOvXdNPG415c8yYdMmhth8PuR1S6HRk2+P54aWZIQ==
+            =Eer0
             -----END PGP MESSAGE-----
           fp: FEE43962AC34E28FB078EFA9F6C9CFE02626638C
     encrypted_regex: ^(data|stringData|host|hosts)$
